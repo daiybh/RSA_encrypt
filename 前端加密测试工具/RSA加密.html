@@ -1,0 +1,37 @@
+<html>
+	<head>
+	<!--
+	<script src="https://open-icc.dahuatech.com/cdn/forge.js"></script>
+	-->
+	<script src="./forge.js"></script>
+	<script>
+		function encrypte(){
+			var publicKey = document.getElementById("publicKey").value;
+			publicKey = '-----BEGIN PUBLIC KEY-----\n' +publicKey+'\n-----END PUBLIC KEY-----';
+			var password = document.getElementById("password").value;
+			publicKey = forge.pki.publicKeyFromPem(publicKey);
+			var passwordText = document.getElementById("passwordText");
+			passwordText.innerHTML = forge.util.encode64(publicKey.encrypt(password, "RSAES-PKCS1-V1_5", {
+                md: forge.md.sha1.create(),
+                mgf1: {
+                    md: forge.md.sha1.create()
+                }
+            }));	
+		}
+	</script>
+	</head>
+	
+	<body>
+		<b>RSA公钥</b>：<textarea rows="3" cols="100" id="publicKey"></textarea> <br><br>
+		<b>明文密码</b>：<input type="text" id="password"> <br><br>
+		
+		<br>
+		<button onclick="encrypte()">加密</button>
+		
+		<br>
+		<br>
+		<br>
+		<br>
+		<b>RSA密文</b>：<textarea rows="3" cols="100" id="passwordText"></textarea><br>相同公钥与密码每次加密都不一样
+	</body>
+</html>

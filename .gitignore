@@ -1,0 +1,15 @@
+.vs/
+*.pch
+c#/RSADemoOnNetCore/obj/
+*.ilk
+*.pdb
+*.tlog
+*.idb
+*.obj
+*.log
+*.iobj
+*.ipdb
+c++\RSA\RSA\x64\Debug
+c++\RSA\RSA\x64\Release
+c++\RSA\RSA\Debug
+c++\RSA\RSA\Release
